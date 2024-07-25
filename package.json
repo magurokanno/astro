@@ -8,7 +8,11 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write 'src/**/*.{ts,js,astro,css,scss}'"
+    "format": "pnpm run _typecheck && pnpm run _lint-fix && pnpm run _prettier-fix",
+    "_lint": "biome check --ext .ts,.js,.json --ignore-path .gitignore . && stylelint \"**/*.{scss,css,astro}\"",
+    "_lint-fix": "biome check --apply --ext .ts,.js,/json --ignore-path .gitignore . && stylelint --fix \"**/*.{scss,css,astro}\"",
+    "_prettier": "prettier --check \"**/*.{html,scss,ts,js,astro}\" --ignore-path .prettierignore",
+    "_prettier-fix": "prettier --write \"**/*.{html,scss,ts,js,astro}\" --ignore-path .prettierignore"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.2",
@@ -21,9 +25,13 @@
   "packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
+    "postcss-html": "^1.7.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
+    "sass": "^1.77.8",
     "sharp": "^0.33.4",
-    "stylelint": "^16.7.0"
+    "stylelint": "^16.7.0",
+    "stylelint-config-recess-order": "^5.0.1",
+    "stylelint-config-standard-scss": "^13.1.0"
   }
 }
