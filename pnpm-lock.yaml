@@ -14,6 +14,9 @@ importers:
       '@astrojs/mdx':
         specifier: ^3.1.3
         version: 3.1.3(astro@4.12.2(typescript@5.5.4))
+      '@astrojs/rss':
+        specifier: ^4.0.7
+        version: 4.0.7
       astro:
         specifier: ^4.12.2
         version: 4.12.2(typescript@5.5.4)
@@ -82,6 +85,9 @@ packages:
   '@astrojs/prism@3.1.0':
     resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
+
+  '@astrojs/rss@4.0.7':
+    resolution: {integrity: sha512-ZEG55XFB19l+DplUvBISmz04UbjDtKliRO4Y5+ERRhAMjgCVVobEBNE6ZwWG1h6orWUocy4nfPihKXDyB73x9g==}
 
   '@astrojs/telemetry@3.1.0':
     resolution: {integrity: sha512-/ca/+D8MIKEC8/A9cSaPUqQNZm+Es/ZinRv0ZAzvu2ios7POQSsVD+VOj7/hypWNsNM3T7RpfgNq7H2TU1KEHA==}
@@ -1111,6 +1117,10 @@ packages:
   fast-uri@3.0.1:
     resolution: {integrity: sha512-MWipKbbYiYI0UC7cl8m/i/IWTqfC8YXsqjzybjddLsFjStroQzsHXkc73JutMvBiXmOvapk+axIl79ig5t55Bw==}
 
+  fast-xml-parser@4.4.0:
+    resolution: {integrity: sha512-kLY3jFlwIYwBNDojclKsNAC12sfD6NwW74QB2CoNGPvtVxjliYehVunB3HYyNi+n4Tt1dAcgwYvmKF/Z18flqg==}
+    hasBin: true
+
   fastest-levenshtein@1.0.16:
     resolution: {integrity: sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==}
     engines: {node: '>= 4.9.1'}
@@ -2009,6 +2019,9 @@ packages:
     resolution: {integrity: sha512-dOESqjYr96iWYylGObzd39EuNTa5VJxyvVAEm5Jnh7KGo75V43Hk1odPQkNDyXNmUR6k+gEiDVXnjB8HJ3crXw==}
     engines: {node: '>=12'}
 
+  strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+
   style-to-object@0.4.4:
     resolution: {integrity: sha512-HYNoHZa2GorYNyqiCaBgsxvcJIn7OHq6inEga+E6Ke3m5JkoqpQbnFssk4jwe+K7AhGa2fcha4wSOf1Kn01dMg==}
 
@@ -2424,6 +2437,11 @@ snapshots:
   '@astrojs/prism@3.1.0':
     dependencies:
       prismjs: 1.29.0
+
+  '@astrojs/rss@4.0.7':
+    dependencies:
+      fast-xml-parser: 4.4.0
+      kleur: 4.1.5
 
   '@astrojs/telemetry@3.1.0':
     dependencies:
@@ -3465,6 +3483,10 @@ snapshots:
       micromatch: 4.0.7
 
   fast-uri@3.0.1: {}
+
+  fast-xml-parser@4.4.0:
+    dependencies:
+      strnum: 1.0.5
 
   fastest-levenshtein@1.0.16: {}
 
@@ -4726,6 +4748,8 @@ snapshots:
   strip-bom@3.0.0: {}
 
   strip-final-newline@3.0.0: {}
+
+  strnum@1.0.5: {}
 
   style-to-object@0.4.4:
     dependencies:
