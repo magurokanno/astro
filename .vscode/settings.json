@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["astro", "astrojs"],
+  "cSpell.words": ["astro", "astrojs", "tsconfigs"],
   "prettier.documentSelectors": ["**/*.astro"],
 
   "[astro]": {
