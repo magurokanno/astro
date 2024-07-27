@@ -9,3 +9,17 @@ import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 />
 <!-- サイトマップ設定  -->
 <link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Google Analyticsトラッキングコード埋込。実際に取得したものを使用すること -->
+<!-- //EDIT GA_MEASUREMENT_IDを自身のトラッキングIDに置き換える -->
+<script
+  type="text/partytown"
+  src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "GA_MEASUREMENT_ID");
+</script>

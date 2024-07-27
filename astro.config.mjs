@@ -1,7 +1,7 @@
+import partytown from "@astrojs/partytown";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import remarkHeadingId from "remark-heading-id";
-
-import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,7 +9,15 @@ export default defineConfig({
 	// EDIT 最終的な出力URL
 	site: "https://www.my-site.dev",
 	// ****- 拡張機能：サイトマップ生成
-	integrations: [sitemap()],
+	integrations: [
+		sitemap(),
+		partytown({
+			// Adds dataLayer.push as a forwarding-event.
+			config: {
+				forward: ["dataLayer.push"],
+			},
+		}),
+	],
 	// ****- vite
 	vite: {},
 	// ***** ビルド
