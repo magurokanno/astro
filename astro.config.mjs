@@ -1,3 +1,4 @@
+import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
@@ -7,10 +8,11 @@ import remarkHeadingId from "remark-heading-id";
 export default defineConfig({
 	// ***** トップレベル
 	// EDIT 最終的な出力URL
-	site: "https://www.my-site.dev",
+	site: "https://8ware-d.com",
 	// ****- 拡張機能：サイトマップ生成
 	integrations: [
 		sitemap(),
+		mdx(),
 		partytown({
 			// Adds dataLayer.push as a forwarding-event.
 			config: {
@@ -19,7 +21,16 @@ export default defineConfig({
 		}),
 	],
 	// ****- vite
-	vite: {},
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					// EDIT importしたいファイルを記載
+					additionalData: `@import "src/styles/ファイル名.scss";`,
+				},
+			},
+		},
+	},
 	// ***** ビルド
 	// ****- JSやCSSなどのアセットが出力されるディレクトリ
 	build: {
