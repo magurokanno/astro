@@ -26,7 +26,7 @@ export default defineConfig({
 			preprocessorOptions: {
 				scss: {
 					// EDIT importしたいファイルを記載
-					additionalData: `@import "src/styles/ファイル名.scss";`,
+					additionalData: `@import "@styles/reset.scss","@styles/global.scss","@styles/variable.scss","@styles/mixin.scss";`,
 				},
 			},
 		},

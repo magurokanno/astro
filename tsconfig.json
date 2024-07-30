@@ -5,9 +5,14 @@
   },
   // パスエイリアス
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@@/*": ["./*"]
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/components/*"],
+      "@layouts/*": ["src/components/layouts/*"],
+      "@elements/*": ["src/components/elements/*"],
+      "@styles/*": ["src/assets/styles/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   }
 }
