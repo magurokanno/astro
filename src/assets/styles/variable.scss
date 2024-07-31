@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+// 使用しない項目はコメントアウトする
+// …空欄の項目があるとsassコンパイル時にエラーが発生する
+
+// ***** SASS変数 …@media内ではcss変数を使用できないため
+// ****- @media ブレイクポイント
+
+$pc: 1192px; // PC
+$tab: 767px; // タブレット。対応しない場合はこのサイズをブレイクポイントとした2段階。
+$sp: 480px; // スマホ
+
+@mixin pc {
+    @media (min-width: ($pc)) {
+        @content;
+    }
+}
+
+// ***-- PC表示時のレイアウト
+@mixin min-tab {
+    @media (min-width: ($tab)) {
+        @content;
+    }
+}
+
+// ***-- SP表示時のレイアウト
+@mixin max-tab {
+    @media (max-width: (calc( $tab - 1px))) {
+        @content;
+    }
+}
+
+@mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+}
+
+// ***** グローバルスコープ
+// NOTE CSS変数定義「--変数名: 値;」
+// NOTE CSS変数呼び出し「var(--変数名);」
+
+:root {
+    // ***** @media-ブレイクポイント
+    --portrait: 375px;
+    --landscape: 767px;
+    --desktop: 1192px;
+
+    // minが～以上…PCレイアウトにのみ適用
+    // maxが～以下…スマートフォンレイアウトにのみ適用
+
+    // ***** width
+    --max-width: 1600px;
+    --max-width-sp: 1600px;
+    --main-width: 1166px;
+    --main-width-sp: 320px;
+    --primary-width: 640px;
+    --secondary-width: ;
+
+    // ****- 余白
+    // ブロックレベルの余白
+    --parts-margin: 8px;
+    --small-margin: 16px;
+    --normal-margin: 32px;
+    --large-margin: 72px;
+    --l2-margin: 144px;
+    --l4-margin: 288px;
+
+    // ブロックレベルの余白
+    --spacing-half: 4px;
+    --spacing-1: 8px;
+    --spacing-2: 16px;
+    --spacing-3: 24px;
+    --spacing-4: 32px;
+    --spacing-5: 48px;
+    --spacing-6: 64px;
+    --spacing-7: 96px;
+    --spacing-8: 128px;
+    --spacing-9: 192px;
+    --spacing-10: 256px;
+    --spacing-11: 320px;
+    --spacing-12: 400px;
+
+    // container…コンテンツの最大幅、p/s…各カラム、画面幅いっぱいは100%
+
+    // ***** フォント
+    // NOTE BIZ UDPGothicはRegularとBoldがある
+    --base-font-family: 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+        'Helvetica Neue', 'arial', 'meiryo', sans-serif;
+    --en-font-family: 'Nunito', sans-serif;
+
+    // ****- サイズ…MajorSecond-1.125
+    --text-10xl: 5.8rem;
+    --text-9xl: 5.2rem;
+    --text-8xl: 4.6rem;
+    --text-7xl: 4.1rem;
+    --text-6xl: 3.6rem;
+    --text-5xl: 3.2rem;
+    --text-4xl: 2.8rem;
+    --text-3xl: 2.5rem;
+    --text-2xl: 2.2rem;
+    --text-strong: 1.8rem;
+    --text-base: 1.6rem; // font-size-normal
+    --text-sub: 1.4rem;
+    --text-small: 1.2rem;
+
+    // ****- 字間
+    --letter-spacing-large: 16px;
+    --letter-spacing-medium: 8px;
+    --letter-spacing-small: 4px;
+    --letter-spacing-base: 2px;
+
+    // ****- 行間
+    --line-height-single: 1.2; // 一行テキストの余白調整
+    --line-height-small: 1.5;
+    --line-height-base: 2;
+    --line-height-wide: 2.5;
+    --line-height-lead: 3;
+
+    // ***** 色
+
+    // ****- text-color　文字色
+    --primary-text: #12100e;
+    --secondary-text: #fffcf9;
+    --disabled-text: rgba(0, 0, 0, 0.38);
+
+    // ****- リンク色
+    --link-text: #625e5b;
+    --hover-text: #b2aeac;
+    --active-text: #b2aeac;
+
+    // ****- color　基本色
+    --main-light-color: #f0efee;
+    --main-color: #e0dfde;
+    --main-dark-color: #b2aeac;
+    --sub-light-color: #fffefd;
+    --sub-color: #fffcf9;
+    --sub-dark-color: #fdf0e2;
+    --dark-color: #12100e;
+    --accent-light-color: #bed782;
+    --accent-color: #8fb339;
+    --accent-dark-color: #5f7726;
+
+    //****- Other Color
+    --success-color: #7c9e36;
+    --info-color: #4a90b9;
+    --warning-color: #f5ba4e;
+    --important-color: #d51313;
+
+    // ***** その他
+
+    // ****- Radius
+    --base-radius: 4px;
+    --base-radius-landscape: 4px;
+
+    // ****- アニメーション
+    --base-duration: ms;
+    --base-timing: ease;
+
+    // ****- Focus
+    --focus-outline-color: color.adjust(var(--link-text), --alpha: -0.4);
+    --focus-outline-width: 3px;
+    --focus-outline: solid;
+    --focus-outline-offset: 2px;
+}
