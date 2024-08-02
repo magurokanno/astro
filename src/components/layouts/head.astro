@@ -1,66 +1,66 @@
 ---
 // GoogleFonts最適化処理
-import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
+import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
 // SEO対策
-import { SEO } from "astro-seo";
+import { SEO } from 'astro-seo';
 
+// ***** astro-seo
 // astro-seoに使用するプロパティの型定義
 export interface Props {
-  title?: string;
-  description?: string;
-  noindex?: boolean;
+    title?: string;
+    description?: string;
+    noindex?: boolean;
 }
 
 const props = Astro.props;
 
 // astro-seoに使用する変数の定義
-const BASE_TITLE = "Title";
+const BASE_TITLE = 'Title';
 const title = props.title ? `${props.title} | ${BASE_TITLE}` : BASE_TITLE;
 
-const BASE_DESCRIPTION = "Base description";
+const BASE_DESCRIPTION = 'Base description';
 const description = props.description ?? BASE_DESCRIPTION;
 ---
 
 <!--  //EDIT GoogleFontの設定。*EDIT*→フォント名、wght -->
 <GoogleFontsOptimizer
-  url="https://fonts.googleapis.com/css2?family=*EDIT*:wght@200;400;500;700&display=swap"
+    url="https://fonts.googleapis.com/css2?family=*EDIT*:wght@200;400;500;700&display=swap"
 />
 <!-- サイトマップ設定  -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- SEO対策 -->
 <SEO
-  title={title}
-  description={description}
-  noindex={props.noindex ?? false}
-  charset="UTF-8"
-  openGraph={{
-    basic: {
-      title,
-      type: "website",
-      image: "/opengraph.png",
-    },
-  }}
-  extend={{
-    link: [{ rel: "icon", href: "/favicon.ico" }],
+    title={title}
+    description={description}
+    noindex={props.noindex ?? false}
+    charset="UTF-8"
+    openGraph={{
+        basic: {
+            title,
+            type: 'website',
+            image: '/opengraph.png',
+        },
+    }}
+    extend={{
+        link: [{ rel: 'icon', href: '/favicon.ico' }],
 
-    meta: [
-      { name: "viewport", content: "width=device-width" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }}
+        meta: [
+            { name: 'viewport', content: 'width=device-width' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+        ],
+    }}
 />
 
 <!-- Google Analyticsトラッキングコード埋込。実際に取得したものを使用すること -->
 <!-- //EDIT GA_MEASUREMENT_IDを自身のトラッキングIDに置き換える -->
-<script
-  type="text/partytown"
-  src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+></script>
 <script type="text/partytown">
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-  gtag("config", "GA_MEASUREMENT_ID");
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
 </script>
