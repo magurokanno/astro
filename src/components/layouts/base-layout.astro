@@ -1,35 +1,35 @@
 ---
 // <head>のコンポーネントをインポート
-import Head from "../components/head.astro";
+import Head from '@layouts/head.astro';
 
 // <header>のコンポーネントをインポート
-import Header from "../components/header.astro";
+import Header from '@layouts/header.astro';
 
 //<footer>のコンポーネントをインポート
-import Footer from "../components/footer.astro";
+import Footer from '@layouts/footer.astro';
 
 //インポート場所で値を渡すためのpropsを定義
 const { title } = Astro.props;
 ---
 
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- <head>のコンポーネントを挿入 -->
-    <!-- title="値"の値がレイアウト側に渡る -->
-    <Head title={title} />
-  </head>
+        <!-- <head>のコンポーネントを挿入 -->
+        <!-- title="値"の値がレイアウト側に渡る -->
+        <Head title={title} />
+    </head>
 
-  <body>
-    <!-- <header>のコンポーネントを挿入 -->
-    <Header />
+    <body>
+        <!-- <header>のコンポーネントを挿入 -->
+        <Header />
 
-    <!-- ここに子要素＝コンテンツが挿入される -->
-    <slot />
+        <!-- ここに子要素＝コンテンツが挿入される -->
+        <slot />
 
-    <!-- <footer>のコンポーネントを挿入 -->
-    <Footer />
-  </body>
-</html>
+        <!-- <footer>のコンポーネントを挿入 -->
+        <Footer />
+    </body></html
+>
