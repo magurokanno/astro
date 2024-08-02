@@ -1,11 +1,11 @@
 {
-  "cSpell.words": ["astro", "astrojs", "partytown", "tsconfigs"],
-  "prettier.documentSelectors": ["**/*.astro"],
+    "cSpell.words": ["astro", "astrojs", "partytown", "playform", "tsconfigs"],
+    "prettier.documentSelectors": ["**/*.astro"],
 
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative"
 }
