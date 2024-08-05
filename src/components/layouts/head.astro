@@ -10,16 +10,31 @@ export interface Props {
     title?: string;
     description?: string;
     noindex?: boolean;
+    toppage?: boolean;
 }
 
 const props = Astro.props;
 
-// astro-seoに使用する変数の定義
-const BASE_TITLE = 'Title';
+// ****-astro-seoに使用する変数の定義
+// ***-- タイトル
+// EDIT 'ホームページ名'
+const BASE_TITLE = 'ホームページ名';
+// title属性が ? 渡されている→「titleの値 | ホームページ名」: 渡されていない→「ホームページ名」
 const title = props.title ? `${props.title} | ${BASE_TITLE}` : BASE_TITLE;
 
-const BASE_DESCRIPTION = 'Base description';
+// ***-- 説明文
+// EDIT '汎用的なホームページ名説明文'
+const BASE_DESCRIPTION = '汎用的なホームページ名説明文';
 const description = props.description ?? BASE_DESCRIPTION;
+
+// ***-- noindex/nofollowの設定用
+// noindex属性にtrueを ?? 渡されていない→index,follow : 渡された→ noindex,nofollow
+// nofollowはnoindexに準じて表示を決定する
+const noindex = props.noindex ?? false;
+
+// ***-- openGraph.basic.typeの設定用
+// トップページのみ「website」になるので例外処理、toppage=trueを記述する
+const toppage = props.toppage ? 'website' : 'article';
 ---
 
 <!--  //EDIT GoogleFontの設定。*EDIT*→フォント名、wght -->
@@ -33,22 +48,18 @@ const description = props.description ?? BASE_DESCRIPTION;
 <SEO
     title={title}
     description={description}
-    noindex={props.noindex ?? false}
-    charset="UTF-8"
+    noindex={noindex}
+    nofollow={noindex}
     openGraph={{
         basic: {
             title,
-            type: 'website',
+            type: toppage,
             image: '/opengraph.png',
         },
     }}
+    twitter={{ creator: '@username' }}
     extend={{
-        link: [{ rel: 'icon', href: '/favicon.ico' }],
-
-        meta: [
-            { name: 'viewport', content: 'width=device-width' },
-            { name: 'twitter:card', content: 'summary_large_image' },
-        ],
+        meta: [{ name: 'twitter:card', content: 'summary_large_image' }],
     }}
 />
 
@@ -64,3 +75,6 @@ const description = props.description ?? BASE_DESCRIPTION;
     gtag('js', new Date());
     gtag('config', 'GA_MEASUREMENT_ID');
 </script>
+
+<!-- ファビコン設定 -->
+<link rel="”icon”" href="“/favicon.ico”" />
