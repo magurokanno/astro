@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @use '@styles/variable.scss' as *;
 
+// EDIT サイトの設計に合わせて変更する
+
 // ***** 全体
 html {
     box-sizing: border-box;
@@ -22,19 +24,6 @@ html {
     }
 }
 
-article,
-aside,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section {
-    display: block;
-}
-
 body {
     font-size: var(--text-base);
     line-height: var(--line-height-base);
@@ -51,7 +40,7 @@ body {
     }
 }
 
-// リンク関連
+// *****リンク関連
 a {
     color: var(--link-text);
     text-decoration: none;
@@ -81,6 +70,154 @@ ul {
 img,
 picture {
     vertical-align: middle;
+}
+
+.e-img {
+    // ****- 画像
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: attr(width) / attr(height);
+        margin-inline: auto;
+    }
+
+    // ****- キャプション
+    figcaption {
+        text-align: center;
+    }
+}
+
+// *****  テキスト設定
+// ****- 派生
+// ****- 下余白を大きく取る
+.is-text-space {
+    margin-bottom: var(--spacing-2);
+}
+
+.is-textBox-space {
+    margin-bottom: var(--spacing-4);
+}
+
+// ****- 下余白を取らない
+.is-text-noSpace {
+    margin-bottom: 0;
+}
+
+// ****- 強いテキスト
+.is-text-strong {
+    font-size: var(--text-strong);
+    font-weight: bold;
+}
+
+// ****- 弱いテキスト
+.is-text-small {
+    font-size: var(--text-sub);
+}
+
+// ****- リンクテキスト
+.is-text-link {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-sub);
+    font-weight: bold;
+
+    &::before {
+        display: inline-block;
+        width: var(--text-base);
+        height: var(--text-base);
+        margin-right: 0.5rem;
+        content: '';
+        background: url('../img/common/link.svg') no-repeat;
+        background-size: contain;
+    }
+}
+
+// ***** ボックス関係
+
+// NOTE コンテンツのさらに下部にあるコンテナ用
+// NOTE 「どのクラスと親子関係にあるか」は重要ではない
+// NOTE 原則的に「margin_bottom」だけを設定する→他の要素は親要素に従う
+// NOTE 最下に配置される場合は余白は親要素に従うことが多いため:not(last-child)が指定されるか
+
+// L-HEAD コンテナ作成
+.l-box {
+    // M-HEAD フレックス親…縦並び
+    &-flex-c {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+    }
+
+    // M-HEAD フレックス親…横並び
+    &-flex-r {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // M-HEAD 各ページコンテンツ部分の大項目のボックス
+    &-container {
+        margin-bottom: var(--spacing-9);
+    }
+
+    // M-HEAD 各ページコンテンツ部分の中項目のボックス
+    &-section {
+        margin-bottom: var(--spacing-6);
+
+        // S-HEAD ボックスが兄弟要素として複数並ぶ場合の一括指定用…原則下マージンのみ
+        // 一括指定は中項目以下のみ設定、大項目用のものは作成しない
+        &-wrap > section:not(:last-child) {
+            margin-bottom: var(--spacing-6);
+        }
+    }
+
+    // M-HEAD 各ページコンテンツ部分の小項目のボックス
+    &-paragraph {
+        margin-bottom: var(--spacing-4);
+
+        // S-HEAD ボックスが兄弟要素として複数並ぶ場合の一括指定用…原則下マージンのみ
+        &-wrap > section:not(:last-child) {
+            margin-bottom: var(--spacing-4);
+        }
+    }
+
+    // M-HEAD 各ページコンテンツ部分の細小項目のボックス
+    &-detail {
+        margin-bottom: var(--spacing-2);
+
+        // S-HEAD ボックスが兄弟要素として複数並ぶ場合の一括指定用…原則下マージンのみ
+        &-wrap > section:not(:last-child) {
+            margin-bottom: var(--spacing-2);
+        }
+    }
+
+    // M-HEAD 左インデントを取る
+    &-indent {
+        margin-left: 3rem;
+    }
+}
+
+// L-HEAD 下部の余白サイズで使い分ける
+.l-box {
+    // M-HEAD 下余白 --spacing-2
+    &-mbSmall {
+        margin-bottom: var(--spacing-2);
+    }
+
+    // M-HEAD 下余白 --spacing-4
+    &-mbNormal {
+        margin-bottom: var(--spacing-4);
+    }
+
+    // M-HEAD 下余白 --spacing-7
+    &-mbLarge {
+        margin-bottom: var(--spacing-7);
+    }
+
+    // M-HEAD 下余白 --l2-margin
+    &-mbL2 {
+        margin-bottom: var(--spacing-9);
+    }
 }
 
 // ***** 禁則処理の指定
@@ -133,6 +270,21 @@ kbd kbd {
     font-size: 100%;
     font-weight: bold;
     box-shadow: none;
+}
+
+// ***** その他
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block;
 }
 
 // 印刷時設定
