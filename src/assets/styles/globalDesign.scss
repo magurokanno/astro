@@ -1,0 +1,182 @@
+// ***** リスト
+
+.is-list {
+    // ****- 頭の記号
+    // ***-- ・ドット
+    &-dot {
+        > li {
+            position: relative;
+            padding-left: var(--text-base);
+
+            // **--- 丸印
+            &::before {
+                position: absolute;
+                top: 12px;
+                left: calc((var(--text-base) / 2) - 3px); // 3px…ドットの半分
+                width: 6px;
+                height: 6px;
+                content: '';
+                background-color: var(--primary-text);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    // ****- デザイン
+    // ***-- 下にスペースを取る
+
+    &-space {
+        margin-bottom: var(--spacing-2);
+    }
+}
+
+// --------------------
+
+// *****  テキスト設定
+
+.is-text {
+    // ****- 余白
+    // ***-- 下余白を大きく取る
+    &-space {
+        margin-bottom: var(--spacing-2);
+    }
+
+    // ***-- 下余白を取らない
+    &-noSpace {
+        margin-bottom: 0;
+    }
+
+    // ****- テキスト種類
+    // ***-- 強いテキスト
+    &-strong {
+        font-size: var(--text-strong);
+        font-weight: bold;
+    }
+
+    // ***-- 弱いテキスト
+    &-small {
+        font-size: var(--text-sub);
+    }
+
+    // ***-- リンクテキスト
+
+    &-link {
+        display: flex;
+        align-items: center;
+        font-size: var(--text-sub);
+        font-weight: bold;
+
+        &::before {
+            display: inline-block;
+            width: var(--text-base);
+            height: var(--text-base);
+            margin-right: 0.5rem;
+            content: '';
+            background: url('../img/common/link.svg') no-repeat;
+            background-size: contain;
+        }
+    }
+}
+
+// --------------------
+
+// ***** ボックス
+
+// ****- セクションコンテナ
+// NOTE コンテンツのさらに下部にあるコンテナ用
+// NOTE 「どのクラスと親子関係にあるか」は重要ではない
+// NOTE 原則的に「margin_bottom」だけを設定する→他の要素は親要素、レイアウトコンポーネントに従う
+// NOTE 最下に配置される場合は余白は親要素に従うことが多いため:not(last-child)が指定されるか
+.b-section {
+    // ***-- 各ページコンテンツ部分の大項目のボックス
+    &-container {
+        margin-bottom: var(--spacing-9);
+    }
+
+    // NOTE 中項目以下のサイズのボックスを包むコンテナ
+    // 兄弟要素として複数並ぶ場合に一番最後の要素には下部余白を付与しない
+    // 大項目のボックスを-wrapに包むべきかは実際に運用してから検討
+    &-wrap {
+        > .b-section {
+            // ***-- 中項目のボックス
+            &-section:not(:last-child) {
+                margin-bottom: var(--spacing-6);
+            }
+
+            // ***-- 小項目のボックス
+            &-paragraph:not(:last-child) {
+                margin-bottom: var(--spacing-4);
+            }
+
+            // ***-- 細小項目のボックス
+            &-detail:not(:last-child) {
+                margin-bottom: var(--spacing-2);
+            }
+        }
+    }
+}
+
+// ****- フレックスコンテナ
+
+.b-flex {
+    // ***-- フレックス親…縦並び
+    &-column {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+    }
+
+    // ***-- フレックス親…横並び
+    &-row {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+// ****- 余白コンテナ
+.b-space {
+    // ***-- 下余白 --spacing-2
+    &-mbSmall {
+        margin-bottom: var(--spacing-2);
+    }
+
+    // ***-- 下余白 --spacing-4
+    &-mbNormal {
+        margin-bottom: var(--spacing-4);
+    }
+
+    // ***-- 下余白 --spacing-7
+    &-mbLarge {
+        margin-bottom: var(--spacing-7);
+    }
+
+    // ***-- 下余白 --spacing-9
+    &-mbL2 {
+        margin-bottom: var(--spacing-9);
+    }
+
+    // ***-- 左インデントを取る
+    &-indent {
+        margin-left: 3rem;
+    }
+}
+
+// --------------------
+
+// ***** 画像
+
+.e-img {
+    // ****- 画像
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: attr(width) / attr(height);
+        margin-inline: auto;
+    }
+
+    // ****- キャプション
+    figcaption {
+        text-align: center;
+    }
+}
