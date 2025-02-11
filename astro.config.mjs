@@ -27,9 +27,7 @@ export default defineConfig({
                 scss: {
                     // EDIT importしたいグローバルscssファイルを記載
                     additionalData: `
-					@use "@styles/reset.scss" as *;
 					@use "@styles/variable.scss" as *;
-					@use "@styles/global.scss" as *;
 					@use "@styles/mixin.scss" as *;
 					`,
                 },
