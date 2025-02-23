@@ -35,7 +35,7 @@ const { title, description, noindex, toppage } = Astro.props;
         <Header />
 
         <!-- ここに子要素＝コンテンツが挿入される -->
-        <slot />
+        <main> <slot /></main>
 
         <!-- <footer>のコンポーネントを挿入 -->
         <Footer />
