@@ -1,9 +1,14 @@
 /***
-    The new CSS reset - version 1.11.2 (last updated 15.11.2023)
+    The new CSS reset - version 1.11.3 (last updated 25.08.2024)
     GitHub page: https://github.com/elad2412/the-new-css-reset
 ***/
 
-*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio, svg *, symbol *)) {
     all: unset;
     display: revert;
 }
@@ -36,6 +41,11 @@ summary {
     list-style: none;
 }
 
+/* Firefox: solve issue where nested ordered lists continue numbering from parent (https://bugzilla.mozilla.org/show_bug.cgi?id=1881517) */
+ol {
+    counter-reset: revert;
+}
+
 /* For images to not be able to exceed their container */
 img {
     max-inline-size: 100%;
@@ -50,7 +60,7 @@ table {
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
 input,
 textarea {
-    -webkit-user-select: auto;
+    user-select: auto;
 }
 
 /* revert the 'white-space' property for textarea elements on Safari */
@@ -83,13 +93,13 @@ meter {
 
 /* revert for bug in Chromium browsers
    - fix for the content editable attribute will work properly.
-   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element */
 :where([contenteditable]:not([contenteditable='false'])) {
     -moz-user-modify: read-write;
     -webkit-user-modify: read-write;
     overflow-wrap: break-word;
     -webkit-line-break: after-white-space;
-    -webkit-user-select: auto;
+    user-select: auto;
 }
 
 /* apply back the draggable feature - exist only in Chromium and Safari */
