@@ -15,7 +15,7 @@ html {
     color: var(--primary-text);
     background-color: var(--sub-color);
     text-rendering: optimizespeed;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgb(0, 0, 0, 0);
 
     // ****- PC表示時
     @include min-tab {
@@ -55,11 +55,33 @@ a {
         color: var(--active-text);
     }
 
-    &:focus {
-        outline: var(--focus-outline);
+    &:focus-visible {
+        outline: var(--focus-outline-width) solid var(--focus-outline-color);
         outline-offset: var(--focus-outline-offset);
+
+        // ユーザーが高コントラスト表示をしている場合
+        @media (prefers-contrast: more) {
+            outline-width: 4px;
+        }
     }
 }
+
+// WARNING: 以下のコードは、CSS Scroll Snapを使用しているため、ブラウザの互換性に注意。
+// ***** 動的スクロール連動アニメーション
+// 要素のスクロール位置に基づいてアニメーションを制御
+// EDIT animationの値は変数を設定、fade-inは任意の名前……互換対応し導入時にきちんと調べる
+// @scroll-timeline fade-in {
+//     scroll-source: selector(#main);
+//     orientation: vertical;
+//     scroll-offsets: 0%, 20%;
+// }
+
+// .scroll-animated {
+//     animation: fade-in linear;
+//     animation-timeline: fade-in;
+// }
+
+// NOTE 下記は変数の設定なし。リセットCSSの延長
 
 // ***** リスト
 ul {
@@ -70,6 +92,16 @@ ul {
 img,
 picture {
     vertical-align: middle;
+}
+
+// *****レスポンシブメディア
+:where(audio, canvas, iframe, img, svg, video) {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+:where(picture) {
+    display: contents;
 }
 
 // ***** 禁則処理の指定
@@ -114,7 +146,7 @@ kbd {
     color: #c7254e;
     background-color: #f9f2f4;
     border-radius: 3px;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 -1px 0 rgb(0, 0, 0, 0.25);
 }
 
 kbd kbd {
@@ -122,6 +154,28 @@ kbd kbd {
     font-size: 100%;
     font-weight: bold;
     box-shadow: none;
+}
+
+// ***** スクリーンリーダー向けセマンティックアナウンス
+// テキスト編集操作のアクセシビリティを向上
+// del（削除）、ins（挿入）、s（取り消し線）要素の前後に、スクリーンリーダー向けの隠しテキストを追加する
+:where(del, ins, s)::before,
+:where(del, ins, s)::after {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(100%);
+}
+
+:where(s)::before {
+    content: 'strikethrough start ';
+}
+
+:where(s)::after {
+    content: ' strikethrough end';
 }
 
 // ***** その他
