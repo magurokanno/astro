@@ -85,8 +85,9 @@ $sp: 480px; // スマホ
 
     // ***** フォント
     // NOTE BIZ UDPGothicはRegularとBoldがある
-    --base-font-family: 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
-        'Helvetica Neue', 'arial', 'meiryo', sans-serif;
+    --base-font-family:
+        'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Helvetica Neue', 'arial',
+        'meiryo', sans-serif;
     --en-font-family: 'Nunito', sans-serif;
 
     // ****- サイズ…MajorSecond-1.125
@@ -122,7 +123,7 @@ $sp: 480px; // スマホ
     // ****- text-color　文字色
     --primary-text: #12100e;
     --secondary-text: #fffcf9;
-    --disabled-text: rgba(0, 0, 0, 0.38);
+    --disabled-text: rgb(0, 0, 0, 0.38);
 
     // ****- リンク色
     --link-text: #625e5b;
@@ -141,7 +142,7 @@ $sp: 480px; // スマホ
     --accent-color: #8fb339;
     --accent-dark-color: #5f7726;
 
-    //****- Other Color
+    // ****- Other Color
     --success-color: #7c9e36;
     --info-color: #4a90b9;
     --warning-color: #f5ba4e;
